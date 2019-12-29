@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scanta | Personality Engine</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+
+<div class="container">
+  <form action="{{url_for('get_data')}}" method="POST">
+  	<img class="" src="../imgs/ScantaXPPLM.png" width="550px" style="margin-left: -28px"><br>
+    <h1><span style="color: #ff7e00;font-size: 25px;">Steering natural language generation</span><br><span style="font-size: 15px;color: black; font-weight: lighter;">Type something, choose a personality, the Personality Engine<sup style="font-size: 9px;">TM</sup>  will generate a paragraph based on the personality. Have fun! Happy CES!</span></h1>
+    <div class="form-group">
+      <input type="text" required="required" name="nlg" />
+      <label for="input" class="control-label">Input your text</label><i class="bar"></i>
+    </div>
+  
+  <div class="button-container">
+    <button type="submit" name="submit" class="button"><span style="color: white">Submit</span></button>
+    <p style="text-align: center; color: #ea5703;margin-top: -28px">© Scanta | All rights reseved</p>
+</form>
+  </div>
+</div>
+
+</body>
+</html>
