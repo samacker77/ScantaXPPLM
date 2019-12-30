@@ -842,7 +842,7 @@ def run_pplm_example(
             (tokenized_cond_text, pert_gen_tok_text, unpert_gen_tok_text)
         )
 
-    return
+    return generated_texts
 
 
 if __name__ == '__main__':

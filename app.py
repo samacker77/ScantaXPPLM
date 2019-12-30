@@ -1,7 +1,9 @@
 from flask import Flask, render_template, url_for, request
 from flask_bootstrap import Bootstrap
-
-
+from transformers.modeling_gpt2 import GPT2LMHeadModel
+# This downloads GPT-2 Medium, it takes a little while
+_ = GPT2LMHeadModel.from_pretrained("gpt2-medium")
+from run_pplm import run_pplm_example
 app = Flask(__name__)
 Bootstrap(app)
 
@@ -17,8 +19,11 @@ def get_data():
     if(request.method =='POST'):
         text = request.form['nlg']
         drop = request.form['personality']
-        print(text,drop)
-    return render_template('result.html',prediction=[text,drop])
+        x = run_pplm_example(cond_text=text,num_samples=1,bag_of_words=drop,length=50,stepsize=0.03,sample=True,num_iterations=3, window_length=5,gamma=1.5,gm_scale=0.95,kl_scale=0.01,verbosity='regular')
+        
+        
+        
+    return render_template('result.html',prediction=[text,type(x)])
 '''def get_data():
 	print("I am here!")
 	if request.method == 'POST':
