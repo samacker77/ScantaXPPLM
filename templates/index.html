@@ -10,6 +10,61 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <style>
+    select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  color: white;
+  background-image: none;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select */
+.select {
+  margin-left: 90px;
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+select {
+  flex: 1;
+  padding: 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+/* Arrow */
+-->.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: #ea5703;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}*/
+/* Transition */
+.select:hover::after {
+  color: white;
+}
     .btn-primary, .btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
 background-color: #ea5703;
 border-color: white;}
@@ -446,14 +501,16 @@ img.center {
           </div>
         </div>-->
         <p style="text-align: center;margin-top: 10px;">Choose Personality</p>
-        <select id="personalitydrop" name = "personality" style="margin-top: 20px;">
-            <option value="science">Scientist</option>
-            <option value="military">Navy SEAL</option>
-            <option value="religion">Preacher</option>
-	    <!-- <option value="kitchen">Home Maker</option>-->
-            <option value="politics">Politician</option>
-            <option value="positive">Optimist</option>
-        </select>
+        <div class="select">
+          <select id="personalitydrop" name = "personality">
+                    <option value="science">Scientist</option>
+                    <option value="military">Navy SEAL</option>
+                    <option value="religion">Preacher</option>
+              <!-- <option value="kitchen">Home Maker</option>-->
+                    <option value="politics">Politician</option>
+                    <option value="positive">Optimist</option>
+                </select>
+        </div>
         
   <div class="button-container">
     <button type="submit" name="submit" class="button"><span style="color: white">Submit</span></button>

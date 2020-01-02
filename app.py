@@ -32,14 +32,6 @@ def get_data():
             per='Optimist'
         x = run_pplm_example(cond_text=text,num_samples=1,bag_of_words=drop,length=20,stepsize=0.03,sample=True,num_iterations=3, window_length=5,gamma=1.5,gm_scale=0.95,kl_scale=0.01,verbosity='regular')      
     return render_template('result.html',prediction=[text,per,x[13:]])
-'''def get_data():
-	print("I am here!")
-	if request.method == 'POST':
-		text = request.form['nlg']
-		print(text)
-drop = request.form['personality']
-        print(drop)
-	return render_template('result.html')'''
 # run the app.
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=80)
