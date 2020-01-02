@@ -19,19 +19,19 @@ def get_data():
     if(request.method =='POST'):
         text = request.form['nlg']
         drop = request.form['personality']
-	per = ''
-	if drop == 'science':
-                per='Scientist'
+        per=""
+        if drop == 'science':
+            per='Scientist'
         elif drop== 'religion':
-                per='Preacher'
+            per='Preacher'
         elif drop== 'military':
-                per='Navy SEAL'
+            per='Navy SEAL'
         elif drop== 'politics':
-                per='Politician'
+            per='Politician'
         elif drop== 'positive':
-                per='optimist'                                
+            per='Optimist'
         x = run_pplm_example(cond_text=text,num_samples=1,bag_of_words=drop,length=20,stepsize=0.03,sample=True,num_iterations=3, window_length=5,gamma=1.5,gm_scale=0.95,kl_scale=0.01,verbosity='regular')      
-    return render_template('result.html',prediction=[text,per,x[14:]])
+    return render_template('result.html',prediction=[text,per,x[13:]])
 '''def get_data():
 	print("I am here!")
 	if request.method == 'POST':
