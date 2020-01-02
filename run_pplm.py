@@ -794,11 +794,12 @@ def run_pplm_example(
     unpert_gen_text = tokenizer.decode(unpert_gen_tok_text.tolist()[0])
 
     if verbosity_level >= REGULAR:
-        print("=" * 80)
-    print("= Unperturbed generated text =")
-    print(unpert_gen_text)
-    print()
-
+       #print("=" * 80)
+       print("")
+    #print("= Unperturbed generated text =")
+    #print(unpert_gen_text)
+    #print()
+    
     generated_texts = []
 
     bow_word_ids = set()
@@ -831,9 +832,9 @@ def run_pplm_example(
             else:
                 pert_gen_text = tokenizer.decode(pert_gen_tok_text.tolist()[0])
 
-            print("= Perturbed generated text {} =".format(i + 1))
-            print(pert_gen_text)
-            print()
+            #print("= Perturbed generated text {} =".format(i + 1))
+            #print(pert_gen_text)
+            #print()
         except:
             pass
 
@@ -842,7 +843,7 @@ def run_pplm_example(
             (tokenized_cond_text, pert_gen_tok_text, unpert_gen_tok_text)
         )
 
-    return generated_texts
+    return pert_gen_text
 
 
 if __name__ == '__main__':

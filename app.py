@@ -19,11 +19,11 @@ def get_data():
     if(request.method =='POST'):
         text = request.form['nlg']
         drop = request.form['personality']
-        x = run_pplm_example(cond_text=text,num_samples=1,bag_of_words=drop,length=50,stepsize=0.03,sample=True,num_iterations=3, window_length=5,gamma=1.5,gm_scale=0.95,kl_scale=0.01,verbosity='regular')
+        x = run_pplm_example(cond_text=text,num_samples=1,bag_of_words=drop,length=20,stepsize=0.03,sample=True,num_iterations=3, window_length=5,gamma=1.5,gm_scale=0.95,kl_scale=0.01,verbosity='regular')
         
         
         
-    return render_template('result.html',prediction=[text,type(x)])
+    return render_template('result.html',prediction=[text,x])
 '''def get_data():
 	print("I am here!")
 	if request.method == 'POST':
