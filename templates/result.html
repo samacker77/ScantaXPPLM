@@ -1,376 +1,162 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Scanta | Personality Engine</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-
-  <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <style>
-    .btn-primary, .btn-primary:hover, .btn-primary:visited, .btn-primary:focus, .btn-primary:active:focus {
-background-color: #ea5703;
-border-color: white;}
-.dropdown-toggle-split{
-  color: #ea5703;
-}
-
-        @import url(https://fonts.googleapis.com/css?family=Roboto);
-body,
-input,
-select,
-textarea,
-body * {
-  font-family: 'Roboto', sans-serif;
-  box-sizing: border-box;
-}
-body::after, body::before,
-input::after,
-input::before,
-select::after,
-select::before,
-textarea::after,
-textarea::before,
-body *::after,
-body *::before {
-  box-sizing: border-box;
-}
+    <title>Scanta | Personality Engine</title>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+  *{
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
 body {
- background-color: #D3D3D3;
-}
-h1 {
-  font-size: 2rem;
-  text-align: center;
-  margin: 0 0 2em;
-}
-.container {
-  position: relative;
-  max-width: 40rem;
-  margin: 5rem auto;
-  background: #fff;
+    background: linear-gradient(253deg, rgb(196, 240, 145), #65b8df, rgb(238, 153, 153));
+    background-size: 300% 300%;
+    -webkit-animation: Background 25s ease infinite;
+    -moz-animation: Background 25s ease infinite;
+    animation: Background 25s ease infinite;
+  }
+  
+  @-webkit-keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @-moz-keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  .full-screen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(https://i.imgur.com/wCG2csZ.png);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column
+    /* works with row or column */
+    
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+    h1 {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    font-size: 4em;
+    letter-spacing: -2px;
+    text-align: center;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, .6);
+  }
+  
+  h2  {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-align: center;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, .6);
+  }
+  
+  .button-line {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: center;
+    font-size: 1.4em;
+    opacity: .8;
+    padding: 20px 40px;
+    text-decoration: none;
+    transition: all .5s ease;
+    margin: 0 auto;
+    display: block;
+    width: 100px;
+  }
+  
+  .button-line:hover {
+    opacity: 1;
+  }
+  .bg {
+  display: block;
+  background-size: cover;
+  height: 68px;
   width: 100%;
-  padding: 3rem 5rem 0;
-  border-radius: 1px;
-  padding-bottom: 0.5rem;
+  position: relative;
 }
-.container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-  -webkit-transform: scale(0.98);
-          transform: scale(0.98);
-  -webkit-transition: -webkit-transform 0.28s ease-in-out;
-  transition: -webkit-transform 0.28s ease-in-out;
-  transition: transform 0.28s ease-in-out;
-  transition: transform 0.28s ease-in-out, -webkit-transform 0.28s ease-in-out;
-  z-index: -1;
+input {
+  background: rgba(255,255,255,0.4);
+  border: none;
+  position: relative;
+  display: block;
+  outline: none;
+  width: 400px;
+  height: 30p;
+  top: 250px;
+  margin: 0 auto;
+  padding: 10px;
+  color: #333;
+  -webkit-box-shadow: 0 2px 10px 1px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 10px 1px rgba(0,0,0,0.5);
 }
-.container:hover::before {
-  -webkit-transform: scale(1);
-          transform: scale(1);
+::-webkit-input-placeholder { color: #666;} 
+:-moz-placeholder { color: #666; }
+::-moz-placeholder { color: #666; }
+:-ms-input-placeholder { color: #666; }
+.form-group {
+  position: relative;
+
 }
 .button-container {
   text-align: center;
-}
-fieldset {
-  margin: 0 0 3rem;
-  padding: 0;
-  border: none;
-}
-.form-radio,
-.form-group {
-  position: relative;
-  margin-top: 2.25rem;
-  margin-bottom: 2.25rem;
-}
-.form-inline > .form-group,
-.form-inline > .btn {
-  display: inline-block;
-  margin-bottom: 0;
-}
-.form-help {
-  margin-top: 0.125rem;
-  margin-left: 0.125rem;
-  color: #b3b3b3;
-  font-size: 0.8rem;
-}
-.checkbox .form-help, .form-radio .form-help, .form-group .form-help {
-  position: absolute;
-  width: 100%;
-}
-.checkbox .form-help {
-  position: relative;
-  margin-bottom: 1rem;
-}
-.form-radio .form-help {
-  padding-top: 0.25rem;
-  margin-top: -1rem;
-}
-.form-group input {
-  height: 1.9rem;
-}
-.form-group textarea {
-  resize: none;
-}
-.form-group select {
-  width: 100%;
-  font-size: 1rem;
-  height: 1.6rem;
-  padding: 0.125rem 0.125rem 0.0625rem;
-  background: none;
-  border: none;
-  line-height: 1.6;
-  box-shadow: none;
-}
-.form-group .control-label {
-  position: absolute;
-  top: 0.25rem;
-  pointer-events: none;
-  padding-left: 0.125rem;
-  z-index: 1;
-  color: #b3b3b3;
-  font-size: 1rem;
-  font-weight: normal;
-  -webkit-transition: all 0.28s ease;
-  transition: all 0.28s ease;
-}
-.form-group .bar {
-  position: relative;
-  border-bottom: 0.0625rem solid #999;
-  display: block;
-}
-.form-group .bar::before {
-  content: '';
-  height: 0.125rem;
-  width: 0;
-  left: 50%;
-  bottom: -0.0625rem;
-  position: absolute;
-  background: #337ab7;
-  -webkit-transition: left 0.28s ease, width 0.28s ease;
-  transition: left 0.28s ease, width 0.28s ease;
-  z-index: 2;
-}
-.form-group input,
-.form-group textarea {
-  display: block;
-  background: none;
-  padding: 0.125rem 0.125rem 0.0625rem;
-  font-size: 1rem;
-  border-width: 0;
-  border-color: transparent;
-  line-height: 1.9;
-  width: 100%;
-  color: transparent;
-  -webkit-transition: all 0.28s ease;
-  transition: all 0.28s ease;
-  box-shadow: none;
-}
-.form-group input[type="file"] {
-  line-height: 1;
-}
-.form-group input[type="file"] ~ .bar {
-  display: none;
-}
-.form-group select,
-.form-group input:focus,
-.form-group input:valid,
-.form-group input.form-file,
-.form-group input.has-value,
-.form-group textarea:focus,
-.form-group textarea:valid,
-.form-group textarea.form-file,
-.form-group textarea.has-value {
-  color: #333;
-}
-.form-group select ~ .control-label,
-.form-group input:focus ~ .control-label,
-.form-group input:valid ~ .control-label,
-.form-group input.form-file ~ .control-label,
-.form-group input.has-value ~ .control-label,
-.form-group textarea:focus ~ .control-label,
-.form-group textarea:valid ~ .control-label,
-.form-group textarea.form-file ~ .control-label,
-.form-group textarea.has-value ~ .control-label {
-  font-size: 0.8rem;
-  color: gray;
-  top: -1rem;
-  left: 0;
-}
-.form-group select:focus,
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-}
-.form-group select:focus ~ .control-label,
-.form-group input:focus ~ .control-label,
-.form-group textarea:focus ~ .control-label {
-  color: #337ab7;
-}
-.form-group select:focus ~ .bar::before,
-.form-group input:focus ~ .bar::before,
-.form-group textarea:focus ~ .bar::before {
-  width: 100%;
-  left: 0;
-}
-.checkbox label,
-.form-radio label {
-  position: relative;
-  cursor: pointer;
-  padding-left: 2rem;
-  text-align: left;
-  color: #333;
-  display: block;
-}
-.checkbox input,
-.form-radio input {
-  width: auto;
-  opacity: 0.00000001;
-  position: absolute;
-  left: 0;
-}
-.radio {
-  margin-bottom: 1rem;
-}
-.radio .helper {
-  position: absolute;
-  top: -0.25rem;
-  left: -0.25rem;
-  cursor: pointer;
-  display: block;
-  font-size: 1rem;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  color: #999;
-}
-.radio .helper::before, .radio .helper::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0.25rem;
-  width: 1rem;
-  height: 1rem;
-  -webkit-transition: -webkit-transform 0.28s ease;
-  transition: -webkit-transform 0.28s ease;
-  transition: transform 0.28s ease;
-  transition: transform 0.28s ease, -webkit-transform 0.28s ease;
-  border-radius: 50%;
-  border: 0.125rem solid currentColor;
-}
-.radio .helper::after {
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  background-color: #337ab7;
-  border-color: #337ab7;
-}
-.radio label:hover .helper {
-  color: #337ab7;
-}
-.radio input:checked ~ .helper::after {
-  -webkit-transform: scale(0.5);
-          transform: scale(0.5);
-}
-.radio input:checked ~ .helper::before {
-  color: #337ab7;
-}
-.checkbox {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-}
-.checkbox .helper {
-  color: #999;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1rem;
-  height: 1rem;
-  z-index: 0;
-  border: 0.125rem solid currentColor;
-  border-radius: 0.0625rem;
-  -webkit-transition: border-color 0.28s ease;
-  transition: border-color 0.28s ease;
-}
-.checkbox .helper::before, .checkbox .helper::after {
-  position: absolute;
-  height: 0;
-  width: 0.2rem;
-  background-color: #337ab7;
-  display: block;
-  -webkit-transform-origin: left top;
-          transform-origin: left top;
-  border-radius: 0.25rem;
-  content: '';
-  -webkit-transition: opacity 0.28s ease, height 0s linear 0.28s;
-  transition: opacity 0.28s ease, height 0s linear 0.28s;
-  opacity: 0;
-}
-.checkbox .helper::before {
-  top: 0.65rem;
-  left: 0.38rem;
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-  box-shadow: 0 0 0 0.0625rem #fff;
-}
-.checkbox .helper::after {
-  top: 0.3rem;
-  left: 0;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-.checkbox label:hover .helper {
-  color: #337ab7;
-}
-.checkbox input:checked ~ .helper {
-  color: #337ab7;
-}
-.checkbox input:checked ~ .helper::after, .checkbox input:checked ~ .helper::before {
-  opacity: 1;
-  -webkit-transition: height 0.28s ease;
-  transition: height 0.28s ease;
-}
-.checkbox input:checked ~ .helper::after {
-  height: 0.5rem;
-}
-.checkbox input:checked ~ .helper::before {
-  height: 1.2rem;
-  -webkit-transition-delay: 0.28s;
-          transition-delay: 0.28s;
-}
-.radio + .radio,
-.checkbox + .checkbox {
-  margin-top: 1rem;
-}
-.has-error .legend.legend, .has-error.form-group .control-label.control-label {
-  color: #d9534f;
-}
-.has-error.form-group .form-help,
-.has-error.form-group .helper, .has-error.checkbox .form-help,
-.has-error.checkbox .helper, .has-error.radio .form-help,
-.has-error.radio .helper, .has-error.form-radio .form-help,
-.has-error.form-radio .helper {
-  color: #d9534f;
-}
-.has-error .bar::before {
-  background: #d9534f;
-  left: 0;
-  width: 100%;
+
 }
 .button {
   position: relative;
   background: currentColor;
   border: 1px solid currentColor;
   font-size: 1.1rem;
-  color: #4f93ce;
+  color: #ff7e00;
   margin: 3rem 0;
+  height: 50px;
+  font-weight: 500px;
   padding: 0.75rem 3rem;
   cursor: pointer;
   -webkit-transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
@@ -415,30 +201,43 @@ fieldset {
 .button:focus {
   outline: none;
 }
-img.center {
-    display: block;
-    margin: 0;
-}
-  </style>
-
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  color: white;
+  background-image: none;}
+</style>
 </head>
-
 <body>
-    <img />
-
-    <div class="container">
-      <form action="{{url_for('get_data')}}" method="POST">
-          <img class="" src="{{url_for('static', filename='ScantaXPPLM.png')}}" width="550px"  style="margin-left: -28px"><br>
-        <h1><span style="color: #ff7e00;font-size: 25px;">Steering natural language generation</span><br>
-        </h1>
-        <div>
-            <h1><span style="font-size: 15px;color: #ff7e00; font-weight: lighter;padding-top=-30px;">Input Text : </span><br><span style="font-size: 15px;color: black; font-weight: lighter;"> {{prediction[0]}}</span></h1>
-<h1><span style="font-size: 15px;color: #ff7e00; font-weight: lighter;padding-top=-30px;">Personality Type : </span><br><span style="font-size: 15px;color: black; font-weight: lighter;"> {{prediction[1]}}</span></h1>
-        <h1><span style="font-size: 15px;color: #ff7e00; font-weight: lighter;">Personality Engine Generated Text : </span> <br> <span style="font-size: 15px;color: black; font-weight: lighter;">{{prediction[2]}}</span></h1>
-        <div class="button-container">
-            <button class="button" onclick = "window.location.href='{{url_for('index')}}'"><span style="color: white">Back</span></button>
-            <p style="text-align: center; color: #ea5703;margin-top: -28px">© Scanta | All rights reseved</p>
-    </div>
+  <div class="full-screen">
+    <div class="col-lg-10" style="float:none; margin:0 auto;">
+   
+      <h1 class="title">Steering natural language generation<br> </h1>
+      <br>
+      <h2>
+          <h2 style="font-size: 30px;">Input Text :</h2><br>
+          <h3 style="text-align: center ;margin-top: -28px; color:black; font-size: 20px; font-family: 'IBM Plex Sans', sans-serif;"> {{prediction[0]}}</h3>
+          <h2  style="font-size: 30px">Personality Type : </h2>
+          <br>
+          <h3 style="text-align: center ;margin-top: -28px; color:black; font-size: 20px; font-family: 'IBM Plex Sans', sans-serif;"> {{prediction[1]}}</h3>
+          <h2 style="font-size: 30px;">Personality Engine Generated Text :<br></h2> 
+          <br>
+          <h3 style="text-align: center ;margin-top: -28px; color:black; font-size: 20px; font-family: 'IBM Plex Sans', sans-serif;"> {{prediction[2]}}</h3>
+      <div class="button-container" >
+          <button class="button" onclick="goBack()"><span style="color: white;">Back</span></button>
+          <script>
+            function goBack() {
+              window.history.back();
+            }
+            </script>
+          <h3 style="text-align: center ;margin-top: -28px; color: white">© Scanta | All rights reseved</h3>
+  </div>
 
 </body>
 </html>

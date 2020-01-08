@@ -1,16 +1,220 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Scanta | Personality Engine</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Scanta | Personality Engine</title>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+  *{
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+body {
+    background: linear-gradient(253deg, #65b8df, #ff7e00, #65b8df, rgb(196, 240, 145), #65b8df, rgb(238, 153, 153));
+    background-size: 300% 300%;
+    -webkit-animation: Background 25s ease infinite;
+    -moz-animation: Background 25s ease infinite;
+    animation: Background 25s ease infinite;
+  }
+  
+  @-webkit-keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @-moz-keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  @keyframes Background {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+  
+  .full-screen {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url(https://i.imgur.com/wCG2csZ.png);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column
+    /* works with row or column */
+    
+    flex-direction: column;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    text-align: center;
+  }
+    h1 {
+    color: #fff;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 800;
+    font-size: 4em;
+    letter-spacing: -2px;
+    text-align: center;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, .6);
+  }
+  
+  h2  {
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-align: center;
+    text-shadow: 1px 2px 1px rgba(0, 0, 0, .6);
+  }
+  
+  .button-line {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: center;
+    font-size: 1.4em;
+    opacity: .8;
+    padding: 20px 40px;
+    text-decoration: none;
+    transition: all .5s ease;
+    margin: 0 auto;
+    display: block;
+    width: 100px;
+  }
+  
+  .button-line:hover {
+    opacity: 1;
+  }
+  .bg {
+  display: block;
+  background-size: cover;
+  height: 68px;
+  width: 100%;
+  position: relative;
+}
+input {
+  background: rgba(255,255,255,0.4);
+  border: none;
+  position: relative;
+  display: block;
+  outline: none;
+  width: 400px;
+  height: 30p;
+  top: 250px;
+  margin: 0 auto;
+  padding: 10px;
+  color: #333;
+  -webkit-box-shadow: 0 2px 10px 1px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 10px 1px rgba(0,0,0,0.5);
+}
+::-webkit-input-placeholder { color: #666;} 
+:-moz-placeholder { color: #666; }
+::-moz-placeholder { color: #666; }
+:-ms-input-placeholder { color: #666; }
+.form-group {
+  position: relative;
 
-  <!--<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <style>
-    select {
+}
+.button-container {
+  text-align: center;
+
+}
+.button {
+  position: relative;
+  background: currentColor;
+  border: 1px solid currentColor;
+  font-size: 1.1rem;
+  color: #ff7e00;
+  margin: 3rem 0;
+  padding: 0.75rem 3rem;
+  cursor: pointer;
+  -webkit-transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+  transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+.button span {
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.button::before {
+  content: '';
+  position: absolute;
+  background: #071017;
+  border: 50vh solid #1d4567;
+  width: 30vh;
+  height: 30vh;
+  border-radius: 50%;
+  display: block;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  opacity: 1;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+          transform: translate(-50%, -50%) scale(0);
+}
+.button:hover {
+  color: #337ab7;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+.button:active::before, .button:focus::before {
+  -webkit-transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
+  transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
+  transition: transform 1.12s ease, opacity 0.28s ease 0.364s;
+  transition: transform 1.12s ease, opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+}
+.button:focus {
+  outline: none;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  color: white;
+  background-image: none;}
+  select {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -92,432 +296,50 @@ body *::after,
 body *::before {
   box-sizing: border-box;
 }
-body {
- background-color: #D3D3D3;
-}
-h1 {
-  font-size: 2rem;
-  text-align: center;
-  margin: 0 0 2em;
-}
-.container {
-  position: relative;
-  max-width: 40rem;
-  margin: 5rem auto;
-  background: #fff;
-  width: 100%;
-  padding: 3rem 5rem 0;
-  border-radius: 1px;
-  padding-bottom: 0.5rem;
-}
-.container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-  -webkit-transform: scale(0.98);
-          transform: scale(0.98);
-  -webkit-transition: -webkit-transform 0.28s ease-in-out;
-  transition: -webkit-transform 0.28s ease-in-out;
-  transition: transform 0.28s ease-in-out;
-  transition: transform 0.28s ease-in-out, -webkit-transform 0.28s ease-in-out;
-  z-index: -1;
-}
-.container:hover::before {
-  -webkit-transform: scale(1);
-          transform: scale(1);
-}
-.button-container {
-  text-align: center;
-}
-fieldset {
-  margin: 0 0 3rem;
-  padding: 0;
-  border: none;
-}
-.form-radio,
-.form-group {
-  position: relative;
-  margin-top: 2.25rem;
-  margin-bottom: 2.25rem;
-}
-.form-inline > .form-group,
-.form-inline > .btn {
-  display: inline-block;
-  margin-bottom: 0;
-}
-.form-help {
-  margin-top: 0.125rem;
-  margin-left: 0.125rem;
-  color: #b3b3b3;
-  font-size: 0.8rem;
-}
-.checkbox .form-help, .form-radio .form-help, .form-group .form-help {
-  position: absolute;
-  width: 100%;
-}
-.checkbox .form-help {
-  position: relative;
-  margin-bottom: 1rem;
-}
-.form-radio .form-help {
-  padding-top: 0.25rem;
-  margin-top: -1rem;
-}
-.form-group input {
-  height: 1.9rem;
-}
-.form-group textarea {
-  resize: none;
-}
-.form-group select {
-  width: 100%;
-  font-size: 1rem;
-  height: 1.6rem;
-  padding: 0.125rem 0.125rem 0.0625rem;
-  background: none;
-  border: none;
-  line-height: 1.6;
-  box-shadow: none;
-}
-.form-group .control-label {
-  position: absolute;
-  top: 0.25rem;
-  pointer-events: none;
-  padding-left: 0.125rem;
-  z-index: 1;
-  color: #b3b3b3;
-  font-size: 1rem;
-  font-weight: normal;
-  -webkit-transition: all 0.28s ease;
-  transition: all 0.28s ease;
-}
-.form-group .bar {
-  position: relative;
-  border-bottom: 0.0625rem solid #999;
-  display: block;
-}
-.form-group .bar::before {
-  content: '';
-  height: 0.125rem;
-  width: 0;
-  left: 50%;
-  bottom: -0.0625rem;
-  position: absolute;
-  background: #337ab7;
-  -webkit-transition: left 0.28s ease, width 0.28s ease;
-  transition: left 0.28s ease, width 0.28s ease;
-  z-index: 2;
-}
-.form-group input,
-.form-group textarea {
-  display: block;
-  background: none;
-  padding: 0.125rem 0.125rem 0.0625rem;
-  font-size: 1rem;
-  border-width: 0;
-  border-color: transparent;
-  line-height: 1.9;
-  width: 100%;
-  color: transparent;
-  -webkit-transition: all 0.28s ease;
-  transition: all 0.28s ease;
-  box-shadow: none;
-}
-.form-group input[type="file"] {
-  line-height: 1;
-}
-.form-group input[type="file"] ~ .bar {
-  display: none;
-}
-.form-group select,
-.form-group input:focus,
-.form-group input:valid,
-.form-group input.form-file,
-.form-group input.has-value,
-.form-group textarea:focus,
-.form-group textarea:valid,
-.form-group textarea.form-file,
-.form-group textarea.has-value {
-  color: #333;
-}
-.form-group select ~ .control-label,
-.form-group input:focus ~ .control-label,
-.form-group input:valid ~ .control-label,
-.form-group input.form-file ~ .control-label,
-.form-group input.has-value ~ .control-label,
-.form-group textarea:focus ~ .control-label,
-.form-group textarea:valid ~ .control-label,
-.form-group textarea.form-file ~ .control-label,
-.form-group textarea.has-value ~ .control-label {
-  font-size: 0.8rem;
-  color: gray;
-  top: -1rem;
-  left: 0;
-}
-.form-group select:focus,
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-}
-.form-group select:focus ~ .control-label,
-.form-group input:focus ~ .control-label,
-.form-group textarea:focus ~ .control-label {
-  color: #337ab7;
-}
-.form-group select:focus ~ .bar::before,
-.form-group input:focus ~ .bar::before,
-.form-group textarea:focus ~ .bar::before {
-  width: 100%;
-  left: 0;
-}
-.checkbox label,
-.form-radio label {
-  position: relative;
-  cursor: pointer;
-  padding-left: 2rem;
-  text-align: left;
-  color: #333;
-  display: block;
-}
-.checkbox input,
-.form-radio input {
-  width: auto;
-  opacity: 0.00000001;
-  position: absolute;
-  left: 0;
-}
-.radio {
-  margin-bottom: 1rem;
-}
-.radio .helper {
-  position: absolute;
-  top: -0.25rem;
-  left: -0.25rem;
-  cursor: pointer;
-  display: block;
-  font-size: 1rem;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  color: #999;
-}
-.radio .helper::before, .radio .helper::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  margin: 0.25rem;
-  width: 1rem;
-  height: 1rem;
-  -webkit-transition: -webkit-transform 0.28s ease;
-  transition: -webkit-transform 0.28s ease;
-  transition: transform 0.28s ease;
-  transition: transform 0.28s ease, -webkit-transform 0.28s ease;
-  border-radius: 50%;
-  border: 0.125rem solid currentColor;
-}
-.radio .helper::after {
-  -webkit-transform: scale(0);
-          transform: scale(0);
-  background-color: #337ab7;
-  border-color: #337ab7;
-}
-.radio label:hover .helper {
-  color: #337ab7;
-}
-.radio input:checked ~ .helper::after {
-  -webkit-transform: scale(0.5);
-          transform: scale(0.5);
-}
-.radio input:checked ~ .helper::before {
-  color: #337ab7;
-}
-.checkbox {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-}
-.checkbox .helper {
-  color: #999;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1rem;
-  height: 1rem;
-  z-index: 0;
-  border: 0.125rem solid currentColor;
-  border-radius: 0.0625rem;
-  -webkit-transition: border-color 0.28s ease;
-  transition: border-color 0.28s ease;
-}
-.checkbox .helper::before, .checkbox .helper::after {
-  position: absolute;
-  height: 0;
-  width: 0.2rem;
-  background-color: #337ab7;
-  display: block;
-  -webkit-transform-origin: left top;
-          transform-origin: left top;
-  border-radius: 0.25rem;
-  content: '';
-  -webkit-transition: opacity 0.28s ease, height 0s linear 0.28s;
-  transition: opacity 0.28s ease, height 0s linear 0.28s;
-  opacity: 0;
-}
-.checkbox .helper::before {
-  top: 0.65rem;
-  left: 0.38rem;
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-  box-shadow: 0 0 0 0.0625rem #fff;
-}
-.checkbox .helper::after {
-  top: 0.3rem;
-  left: 0;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-.checkbox label:hover .helper {
-  color: #337ab7;
-}
-.checkbox input:checked ~ .helper {
-  color: #337ab7;
-}
-.checkbox input:checked ~ .helper::after, .checkbox input:checked ~ .helper::before {
-  opacity: 1;
-  -webkit-transition: height 0.28s ease;
-  transition: height 0.28s ease;
-}
-.checkbox input:checked ~ .helper::after {
-  height: 0.5rem;
-}
-.checkbox input:checked ~ .helper::before {
-  height: 1.2rem;
-  -webkit-transition-delay: 0.28s;
-          transition-delay: 0.28s;
-}
-.radio + .radio,
-.checkbox + .checkbox {
-  margin-top: 1rem;
-}
-.has-error .legend.legend, .has-error.form-group .control-label.control-label {
-  color: #d9534f;
-}
-.has-error.form-group .form-help,
-.has-error.form-group .helper, .has-error.checkbox .form-help,
-.has-error.checkbox .helper, .has-error.radio .form-help,
-.has-error.radio .helper, .has-error.form-radio .form-help,
-.has-error.form-radio .helper {
-  color: #d9534f;
-}
-.has-error .bar::before {
-  background: #d9534f;
-  left: 0;
-  width: 100%;
-}
-.button {
-  position: relative;
-  background: currentColor;
-  border: 1px solid currentColor;
-  font-size: 1.1rem;
-  color: #4f93ce;
-  margin: 3rem 0;
-  padding: 0.75rem 3rem;
-  cursor: pointer;
-  -webkit-transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
-  transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
-  overflow: hidden;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
-.button span {
-  color: #fff;
-  position: relative;
-  z-index: 1;
-}
-.button::before {
-  content: '';
-  position: absolute;
-  background: #071017;
-  border: 50vh solid #1d4567;
-  width: 30vh;
-  height: 30vh;
-  border-radius: 50%;
-  display: block;
-  top: 50%;
-  left: 50%;
-  z-index: 0;
-  opacity: 1;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-          transform: translate(-50%, -50%) scale(0);
-}
-.button:hover {
-  color: #337ab7;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
-}
-.button:active::before, .button:focus::before {
-  -webkit-transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
-  transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
-  transition: transform 1.12s ease, opacity 0.28s ease 0.364s;
-  transition: transform 1.12s ease, opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-          transform: translate(-50%, -50%) scale(1);
-  opacity: 0;
-}
-.button:focus {
-  outline: none;
-}
-img.center {
-    display: block;
-    margin: 0;
-}
-  </style>
-
+</style>
 </head>
 <body>
-    <img />
-
 <div class="container">
   <form action="{{url_for('get_data')}}" method="POST">
-  	<img class="" src="{{url_for('static', filename='ScantaXPPLM.png')}}" width="550px"  style="margin-left: -28px"><br>
-    <h1><span style="color: #ff7e00;font-size: 25px;">Steering natural language generation</span><br><span style="font-size: 15px;color: black; font-weight: lighter;">Type something, choose a personality, the Personality Engine<sup style="font-size: 9px;">TM</sup>  will generate a paragraph based on the personality. Have fun! Happy CES!</span></h1>
-    <div class="form-group">
-      <input type="text" required="required" name="nlg" />
-      <label for="input" class="control-label">Input your text</label><i class="bar"></i>
-      <!--<div class="btn-group" style="margin-left: 141px; margin-top: 25px;">
-          <button type="button" class="btn btn-primary">Choose Personality</button>
-          <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-          </button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item">Scientist</a>
-            <a class="dropdown-item">Navy SEAL</a>
-            <a class="dropdown-item">Preacher</a>
-            <a class="dropdown-item">Home Maker</a>
-            <a class="dropdown-item">Politician</a>
-            <a class="dropdown-item">Optimist</a>
-          </div>
-        </div>-->
-        <p style="text-align: center;margin-top: 10px;">Choose Personality</p>
-        <div class="select">
-          <select id="personalitydrop" name = "personality" style="color: white;margin-top: 4px;margin-left: 5px;font-size: 19px;">
-                    <option value="science" style="color: black;">Scientist</option>
-                    <option value="military" style="color: black;">Navy SEAL</option>
-                    <option value="religion" style="color: black;">Preacher</option>
-              <!-- <option value="kitchen">Home Maker</option>-->
-                    <option value="politics" style="color: black;">Politician</option>
-                    <option value="positive" style="color: black;">Optimist</option>
-                </select>
-        </div>
-        
-  <div class="button-container">
-    <button type="submit" name="submit" class="button"><span style="color: white">Submit</span></button>
-    <p style="text-align: center; color: #ea5703;margin-top: -28px">© Scanta | All rights reseved</p>
-</form>
+    <div class="full-screen">
+      <div class="col-lg-10" style="float:none; margin:0 auto;">
+        <h1 class="title">Steering natural language generation</h1>
+        <h2>Type something, choose a personality, the Personality Engine<sup style="font-size: 9px;">TM</sup>  will generate a paragraph based on the personality. Have fun! Happy CES! </h2>
+        <div class="form-group">
+          <input type="text" required="required" name="nlg" placeholder="Type Text Here" style="background-color: #fff; height: 50px; width: 550px; margin-bottom: 60px;";/>
+        <h2 style="text-align: center;margin-top: 10px; color: white;">Choose a Personality</h2>
+<center>
+  <div class="select" style="margin-right: 65px;">
+    <select id="personalitydrop" name = "personality" style="color: white;margin-top: 4px;margin-right: 45px;font-size: 19px;">
+              <option value="science" style="color: black;">Scientist</option>
+              <option value="military" style="color: black;">Navy SEAL</option>
+              <option value="religion" style="color: black;">Preacher</option>
+        <!-- <option value="kitchen">Home Maker</option>-->
+              <option value="politics" style="color: black;">Politician</option>
+              <option value="positive_words" style="color: black;">Optimist</option>
+          </select>
   </div>
+  <p id="load" style="color: white;"></p>
+</br>
+</br>
+</center>
+</br>
+</br>
+<div class="button-container" >
+</br>
+  <button type="submit" name="submit" class="button"><span style="color: white">Submit</span></button>
+  <h3 style="text-align: center ;margin-top: -28px;font-size: 20px; color: #fff;">© Scanta | All rights reseved</h3>
+
+</form>
+<br>
 </div>
 
+
 </body>
-</html>
+<script>
+  $('.button').click(function() {
+       document.getElementById('load').innerHTML = "Generating Text, Please hold on.."
+    });
+
+</script>
+  </html>
